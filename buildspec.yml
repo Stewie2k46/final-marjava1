@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: openjdk11  # Use OpenJDK 11 for Maven
+      java: openjdk17  # Use OpenJDK 17 for Maven testing
   pre_build:
     commands:
       - mvn clean  # Clean up any existing build artifacts
