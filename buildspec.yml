@@ -7,10 +7,12 @@ phases:
     commands:
       - apt-get update
       - apt-get install -y wget
+      - apt-get install -y java-11-amazon-corretto-jdk
+      - apt-get install -y maven java-11-amazon-corretto-devel
       - wget -O- https://apt.corretto.aws/corretto.key | apt-key add -
       - add-apt-repository 'deb https://apt.corretto.aws/ stable main'
       - apt-get update
-      - apt-get install -y java-11-amazon-corretto-jdk
+      
   pre_build:
     commands:
       - mvn clean  # Clean up any existing build artifacts
