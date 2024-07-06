@@ -19,4 +19,4 @@ build:
 
 artifacts:
   files:
-    - '**/*'  # Include all artifacts in the build directory
+    - target/*.jar
