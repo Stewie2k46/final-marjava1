@@ -3,27 +3,20 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: openjdk17  # Use OpenJDK 17 for Maven testing
+      java: 11
     commands:
       - apt-get update
       - apt-get install -y wget
-      - apt-get install -y java-11-amazon-corretto-jdk
-      - apt-get install -y maven java-11-amazon-corretto-devel
       - wget -O- https://apt.corretto.aws/corretto.key | apt-key add -
       - add-apt-repository 'deb https://apt.corretto.aws/ stable main'
       - apt-get update
-      
-  pre_build:
-    commands:
-      - mvn clean  # Clean up any existing build artifacts
-  build:
-    commands:
-      - mvn package --file pom.xml  # Build your Maven project
-  post_build:
-    commands:
-      - mkdir -p deploy  # Create a directory to store artifacts
-      - cp target/*.jar deploy/application.jar  # Copy the built JAR to deployment directory
+      - apt-get install -y java-11-amazon-corretto-jdk maven
+
+build:
+  commands:
+    - mvn clean  # Clean up any existing build artifacts
+    - mvn package --file pom.xml  # Build your Maven project
 
 artifacts:
   files:
-    - deploy/**/*  # Specify the artifacts (JAR files) to be bundled and passed to the next stage
+    - '**/*'  # Include all artifacts in the build directory
