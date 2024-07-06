@@ -6,7 +6,6 @@ phases:
       java: openjdk11  # Use OpenJDK 11 for Maven
   pre_build:
     commands:
-      - cd marjava/
       - mvn clean  # Clean up any existing build artifacts
   build:
     commands:
